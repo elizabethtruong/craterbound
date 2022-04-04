@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeTime: 32
-  sceneName: Test123
+  sceneName: TutorialCutscene
 --- !u!1 &150459499
 GameObject:
   m_ObjectHideFlags: 0

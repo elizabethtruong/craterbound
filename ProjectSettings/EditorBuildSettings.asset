@@ -15,12 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Prologue.unity
     guid: 3237e44009b1e4a3e9ec1b9ff56c9f3b
   - enabled: 1
-    path: Assets/Scenes/Tutorial.unity
-    guid: 05bae89d602b546b7b8d97d71b6521a6
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/TutorialCutscene.unity
+    guid: 4536a3abb8c694ed0b1086e7ab116d88
   - enabled: 1
-    path: Assets/Scenes/Test123.unity
-    guid: 7772a7c9f53c0484082c3650ff5a90f0
+    path: Assets/Scenes/Tutorial.unity
+    guid: 33bf8435a697d4d9b9dcf4e19de69d66
   m_configObjects: {}
