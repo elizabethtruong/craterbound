@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private BoxCollider2D boxCollider;
     private SpriteRenderer sprite;
-    //private bool grounded;
+    bool canDoubleJump;
 
     private float horizontalInput = 0f;
 
@@ -27,10 +27,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            body.velocity = new Vector2(body.velocity.x, 14f);
-            anim.SetTrigger("jump");
+            if (isGrounded())
+            {
+                body.velocity = new Vector2(body.velocity.x, 14f);
+                anim.SetTrigger("jump");
+                canDoubleJump = true;
+            }
+            else if (canDoubleJump)
+            {
+                body.velocity = new Vector2(body.velocity.x, 14f);
+                anim.SetTrigger("jump");
+                canDoubleJump = false;
+            }
         }
-
         UpdateAnimationState();
         // Set animator parameters
         anim.SetBool("grounded", isGrounded());
