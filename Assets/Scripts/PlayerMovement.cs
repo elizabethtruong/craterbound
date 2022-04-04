@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (canDoubleJump)
             {
-                body.velocity = new Vector2(body.velocity.x, 14f);
+                body.velocity = new Vector2(body.velocity.x, 9.33f);
                 anim.SetTrigger("jump");
                 canDoubleJump = false;
             }
