@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,7 +9,13 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private BoxCollider2D boxCollider;
     private SpriteRenderer sprite;
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip jumpSFX;
+    [SerializeField]
+    private AudioClip powerupSFX;
     bool canDoubleJump;
+    public float jumpForce = 14f;
 
     private float horizontalInput = 0f;
 
@@ -18,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -29,15 +37,17 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isGrounded())
             {
-                body.velocity = new Vector2(body.velocity.x, 14f);
+                body.velocity = new Vector2(body.velocity.x, jumpForce);
                 anim.SetTrigger("jump");
                 canDoubleJump = true;
+                audioSource.PlayOneShot(jumpSFX);
             }
             else if (canDoubleJump)
             {
-                body.velocity = new Vector2(body.velocity.x, 9.33f);
+                body.velocity = new Vector2(body.velocity.x, jumpForce * .66f);
                 anim.SetTrigger("jump");
                 canDoubleJump = false;
+                audioSource.PlayOneShot(jumpSFX);
             }
         }
         UpdateAnimationState();
@@ -70,5 +80,24 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("walk", false);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) 
+    {
+        if (collision.tag == "Powerup")
+        {
+            Destroy(collision.gameObject);
+            audioSource.PlayOneShot(powerupSFX);
+            jumpForce = 20f;
+            GetComponent<SpriteRenderer>().color = Color.yellow;
+            StartCoroutine(ResetPower());
+        }
+    }
+
+    private IEnumerator ResetPower()
+    {
+        yield return new WaitForSeconds(5);
+        jumpForce = 14f;
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
