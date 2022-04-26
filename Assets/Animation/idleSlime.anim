@@ -40,7 +40,7 @@ AnimationClip:
     - time: 0.75
       value: {fileID: -5462098846767402552, guid: 52d40d1d463a123498d838dd108b712a, type: 3}
     attribute: m_Sprite
-    path: EnemySlime
+    path: Slime
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 60
@@ -51,7 +51,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 4113673317
+      path: 1659664943
       attribute: 0
       script: {fileID: 0}
       typeID: 212
