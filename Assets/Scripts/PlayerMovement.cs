@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class PlayerMovement : MonoBehaviour
     private AudioSource mainTheme;
     bool canDoubleJump;
     public float jumpForce = 14f;
+
+    private static int deaths = 0;
+    [SerializeField] private Text deathText;
 
     private float horizontalInput = 0f;
 
@@ -105,6 +109,8 @@ public class PlayerMovement : MonoBehaviour
         if (collision.tag == "Trap") 
         {
             Die();
+            deaths++;
+            deathText.text = "Deaths: " + deaths;
         }
 
         if (collision.tag == "Checkpoint") 
@@ -118,6 +124,8 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Enemy") 
         {
             Die();
+            deaths++;
+            deathText.text = "Deaths: " + deaths;
         }
     }
 

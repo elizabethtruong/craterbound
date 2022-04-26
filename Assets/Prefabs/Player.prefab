@@ -158,6 +158,7 @@ MonoBehaviour:
   deathSFX: {fileID: 8300000, guid: a3c20d84f8ebb4ca0b7bdec8180840e6, type: 3}
   mainThemeClip: {fileID: 8300000, guid: a9144014ffb2a4a8ab7917e4799bfd13, type: 3}
   jumpForce: 14
+  deathText: {fileID: 0}
 --- !u!95 &1045966833949236532
 Animator:
   serializedVersion: 3
