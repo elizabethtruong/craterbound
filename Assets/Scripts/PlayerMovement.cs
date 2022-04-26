@@ -106,6 +106,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Die();
         }
+
+        if (collision.tag == "Checkpoint") 
+        {
+            mainTheme.Stop();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision) 
