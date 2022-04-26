@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private AudioClip jumpSFX;
     [SerializeField]
     private AudioClip powerupSFX;
+    [SerializeField]
+    private AudioClip deathSFX;
     bool canDoubleJump;
     public float jumpForce = 14f;
 
@@ -92,6 +95,15 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<SpriteRenderer>().color = Color.yellow;
             StartCoroutine(ResetPower());
         }
+
+        if (collision.tag == "Trap") 
+        {
+            audioSource.PlayOneShot(deathSFX);
+            GetComponent<SpriteRenderer>().color = Color.red;
+            body.bodyType = RigidbodyType2D.Static;
+            anim.SetTrigger("death");
+            StartCoroutine(LoadSceneWithDelay());
+        }
     }
 
     private IEnumerator ResetPower()
@@ -99,5 +111,11 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(5);
         jumpForce = 14f;
         GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+    private IEnumerator LoadSceneWithDelay()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
