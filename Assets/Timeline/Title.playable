@@ -107,7 +107,7 @@ MonoBehaviour:
     m_Start: 5.666666666666667
     m_ClipIn: 0
     m_Asset: {fileID: 1757010543837986872}
-    m_Duration: 2
+    m_Duration: 10.666666666666664
     m_TimeScale: 1
     m_ParentTrack: {fileID: -4552619009627684151}
     m_EaseInDuration: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: titlesfx
+    m_DisplayName: titlemel
   m_Markers:
     m_Objects: []
   m_TrackProperties:
@@ -682,11 +682,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f10dd60657c6004587f237a7e90f8e4, type: 3}
   m_Name: AudioPlayableAsset
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 8300000, guid: 1e0777fdcec04467aaa9585c52eddc35, type: 3}
+  m_Clip: {fileID: 8300000, guid: 315a4ad76298548b79148df44c24852d, type: 3}
   m_Loop: 0
   m_bufferingTime: 0.1
   m_ClipProperties:
-    volume: 1
+    volume: 0.75
 --- !u!114 &1766821833733912564
 MonoBehaviour:
   m_ObjectHideFlags: 1
