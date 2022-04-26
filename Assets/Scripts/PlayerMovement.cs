@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     private AudioClip powerupSFX;
     [SerializeField]
     private AudioClip deathSFX;
+    [SerializeField]
+    private AudioClip mainThemeClip;
+    private AudioSource mainTheme;
     bool canDoubleJump;
     public float jumpForce = 14f;
 
@@ -29,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
         audioSource = GetComponent<AudioSource>();
+        mainTheme = GetComponent<AudioSource>();
+        mainTheme.clip = mainThemeClip;
+        mainTheme.Play();
     }
 
     private void Update()
@@ -98,11 +104,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.tag == "Trap") 
         {
-            audioSource.PlayOneShot(deathSFX);
-            GetComponent<SpriteRenderer>().color = Color.red;
-            body.bodyType = RigidbodyType2D.Static;
-            anim.SetTrigger("death");
-            StartCoroutine(LoadSceneWithDelay());
+            Die();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) 
+    {
+        if (collision.gameObject.tag == "Enemy") 
+        {
+            Die();
         }
     }
 
@@ -117,5 +127,16 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void Die()
+    {
+        if (mainTheme.isPlaying) {
+            mainTheme.Stop();
+            audioSource.PlayOneShot(deathSFX);
+            GetComponent<SpriteRenderer>().color = Color.red;
+            body.bodyType = RigidbodyType2D.Static;
+            StartCoroutine(LoadSceneWithDelay());
+        }
     }
 }
